@@ -20,7 +20,7 @@ public class MathFuncitons {
         System.out.println(isOdd.apply(4));
         System.out.println(isEven.test(4));
 
-        Predicate<Student> isApproved = student -> student.getQualification() >= 6;
+        Predicate<Student> isApproved = student -> student.getQualification() >= 6.0;
         Student ivan = new Student(5.9);
 
         System.out.println(isApproved.test(ivan));
