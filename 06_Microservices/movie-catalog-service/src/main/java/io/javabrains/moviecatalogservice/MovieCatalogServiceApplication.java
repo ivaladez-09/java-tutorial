@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.List;
 public class MovieCatalogServiceApplication {
 
 	@Bean
+	@LoadBalanced  // To look into EurekaServer by the client name. Ex. ratings-data-service or movie-info-service
 	public RestTemplate getRestTemplate(){
 		return new RestTemplate();
 	}
