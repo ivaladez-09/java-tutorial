@@ -13,8 +13,8 @@ public class PaymentProcessorTest {
 
     @Before
     public void setup(){
-        PaymentGateway paymentGateway = Mockito.mock(PaymentGateway.class);
-        PaymentProcessor paymentProcessor = new PaymentProcessor(paymentGateway);
+        paymentGateway = Mockito.mock(PaymentGateway.class);
+        paymentProcessor = new PaymentProcessor(paymentGateway);
     }
 
     @Test

@@ -60,10 +60,17 @@ public class MovieRepositoryIntegrationTest {
     }
 
     @Test
+    public void load_movie_by_name() {
+        Movie movie = movieRepository.findByName("Memento");
+
+        assertEquals( movie,  new Movie(2, "Memento", 113, Genre.THRILLER));
+    }
+
+    @Test
     public void insert_a_movie() {
         Movie movie = new Movie(4,"Super 8", 112, Genre.THRILLER);
         movieRepository.saveOrUpdate(movie);
-        Movie movieFromDB = movieRepository.findById(4);
+        Movie movieFromDB = movieRepository.findById(movie.getId());
 
         assertEquals(movieFromDB, movie);
     }

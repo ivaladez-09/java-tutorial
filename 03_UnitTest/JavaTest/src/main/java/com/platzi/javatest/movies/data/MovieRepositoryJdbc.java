@@ -22,6 +22,12 @@ public class MovieRepositoryJdbc implements MovieRepository {
     }
 
     @Override
+    public Movie findByName(String name) {
+        Object[] args = {name};
+        return jdbcTemplate.queryForObject("SELECT * FROM movies WHERE name = ?", args, movieMapper);
+    }
+
+    @Override
     public Collection<Movie> findAll() {
         return jdbcTemplate.query("select * from movies", movieMapper);
     }
