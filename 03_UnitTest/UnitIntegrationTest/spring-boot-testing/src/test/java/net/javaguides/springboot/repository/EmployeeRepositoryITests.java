@@ -1,34 +1,29 @@
 package net.javaguides.springboot.repository;
 
 import net.javaguides.springboot.model.Employee;
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-@DataJpaTest // Auto-configure in-memory DB (H2) instead of real DB (MySQL, PostgresSQL)
-// Do not forget to add the dependency H2 again in order to run this tests.
-public class EmployeeRepositoryTests {
+import static org.assertj.core.api.Assertions.assertThat;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // Disable in-memory DB support
+public class EmployeeRepositoryITests {
 
     @Autowired
     private EmployeeRepository repository;
 
     private Employee givenEmployee;
 
-    /*@Test
-    public void given_when_then() {
-        // given
-        // when
-        // then
-    }*/
-
     @BeforeEach
     public void setup() {
+        repository.deleteAll();
         givenEmployee = Employee.builder()
                 .firstName("Ivan")
                 .lastName("Valadez")
