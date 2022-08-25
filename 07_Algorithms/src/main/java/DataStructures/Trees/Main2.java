@@ -56,6 +56,8 @@ public class Main2 {
         //new DepthFirstSearch<Integer>().traverse(v0);
         //new DepthFirstSearch<Integer>().traverseRecursively(v0);
         var bfs = new BreathFirstSearch<Integer>();
-        System.out.println("Are trees mirrored? " + bfs.areMirrored(v0, w0));
+        var dfs = new DepthFirstSearch<Integer>();
+        //System.out.println("Are trees mirrored? " + bfs.areMirrored(v0, w0));
+        System.out.println("Are trees mirrored? " + dfs.areMirroredRecursive(v0, w0));
     }
 }
