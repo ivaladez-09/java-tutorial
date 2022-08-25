@@ -48,9 +48,13 @@ public class Vertex<T> {
 
     @Override
     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        neighbors.forEach(neighbor -> sb.append(neighbor.data + " : "));
+
         return "Vertex{" +
                 "data=" + data +
                 ", visited=" + visited +
+                ", neighbors=" + sb.toString() +
                 '}';
     }
 }

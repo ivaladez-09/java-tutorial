@@ -17,17 +17,10 @@ public class Main {
         v4.setNeighbors(List.of(v2, v6));
         v6.setNeighbors(List.of(v0));
 
-        new DepthFirstSearch<Integer>().traverse(v0);
+        //new DepthFirstSearch<Integer>().traverse(v0);
+        //new DepthFirstSearch<Integer>().traverseRecursively(v0);
+        new BreathFirstSearch<Integer>().traverse(v0);
 
-        v0.setVisited(false);
-        v1.setVisited(false);
-        v2.setVisited(false);
-        v3.setVisited(false);
-        v4.setVisited(false);
-        v5.setVisited(false);
-        v6.setVisited(false);
-        System.out.println("\n");
 
-        new DepthFirstSearch<Integer>().traverseRecursively(v0);
     }
 }
