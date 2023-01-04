@@ -62,21 +62,33 @@ class MockClient implements Client {
 
 class Wrapper {
     private final Client client = new MockClient();
-    private Page currentPage;
     private int currentIndex = -1;
+    private int currentPageNum = -1;
 
     public List<Integer> fetchResults(int numberOfResults) {
-        // Iterate until reach numOfResults
-        // Save current Page
-        // Save current index
-        int count = 0;
-        while (count < numberOfResults) {
-            client.fetch()
+        List<Integer> results = new ArrayList<>();
+        int pageNum = this.currentPageNum == -1 ? 0: this.currentPageNum;
+
+        while (results.size() < numberOfResults) {
+            Page page = client.fetch(pageNum);
+            int index = this.currentIndex == -1 ? 0: this.currentIndex;
+            while (index < page.results.size() && results.size() < numberOfResults) {
+                results.add(page.results.get(index));
+                index++;
+            }
+
+            pageNum++;
+
+            if (index < page.results.size()) {
+                this.currentIndex = index;
+                this.currentPageNum = pageNum - 1;
+            } else {
+                this.currentIndex = -1;
+                this.currentPageNum = pageNum;
+            }
         }
 
-
-
-        return new ArrayList<>();
+        return results;
     }
 }
 
@@ -85,11 +97,6 @@ public class Main {
     public static void main(String[] args) {
         MockClient client = new MockClient();
         Wrapper wrapper = new Wrapper();
-        client.RESULTS.subList(0, 10).forEach(System.out::println);
-        Page page0 = client.fetch(0);
-        Page page5 = client.fetch(5);
-        Page page11 = client.fetch(11);
-        System.out.println(client.fetch(0).nextPageNumber);
 
         testArrays(client.RESULTS.subList(0, 10), wrapper.fetchResults(10));
         testArrays(client.RESULTS.subList(10, 15), wrapper.fetchResults(5));

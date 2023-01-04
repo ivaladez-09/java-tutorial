@@ -1,0 +1,34 @@
+
+         Cache inmemory
+         Max size =
+         LRU = To evict
+         Data URL containg an image
+        
+        
+         Input:
+         - Cache size in bytes
+         - NUmber of URLs in next inputs
+         - N URLs
+        
+         Constrains:
+         - For each URL, your program should aempt to fetch it from the cache
+         - if it isn’t present, download it from the internet and place it in the cache
+         - save the enre image in the cache,
+        
+         Output:
+         <url requested> <IN_CACHE|DOWNLOADED> <size of image in bytes>
+
+         Notes: stub out downloading images with a stac {string url: unsigned char[] bytes} map.
+        
+         Example:
+         - Input:
+               + 524288
+               + 3
+               + http://i.imgur.com/xGmX4h3.jpg
+               + http://i.imgur.com/IUfsijF.jpg
+               + http://i.imgur.com/xGmX4h3.jpg
+        
+         - Output:
+               + http://i.imgur.com/xGmX4h3.jpg DOWNLOADED 93606
+               + http://i.imgur.com/IUfsijF.jpg DOWNLOADED 317908
+               + http://i.imgur.com/xGmX4h3.jpg IN_CACHE 93606
