@@ -7,6 +7,7 @@ public class Cache {
 
     private final Map<String, List<Byte>> map = new LinkedHashMap<>();
     private final Stack<String> stack = new Stack<>();
+    private final Queue<String> queue = new LinkedList<>();
 
     public Cache(long maxSize) {
         this.MAX_SIZE = maxSize;
@@ -18,14 +19,16 @@ public class Cache {
 
         if (map.size() >= MAX_SIZE) {
             // Pop LRU
-            var lruKey = stack.get(0);
+            //var lruKey = stack.get(0);
+            var lruKey = queue.poll();
 
             map.remove(lruKey);
-            stack.remove(lruKey);
+            //stack.remove(lruKey);
         }
 
         map.put(key, value);
-        stack.push(key);
+        //stack.push(key);
+        queue.add(key);
     }
 
     public List<Byte> fetch(String key) {
@@ -34,7 +37,8 @@ public class Cache {
 
         if (value != null) {
             // Update LRU
-            stack.push(key);
+            //stack.push(key);
+            queue.add(key);
         } else {
             return List.of(new Byte[]{});
         }

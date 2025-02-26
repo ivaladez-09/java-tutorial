@@ -1,4 +1,4 @@
-package com.platzi.javatest.payments;
+ package com.platzi.javatest.payments;
 
 import org.junit.Before;
 import org.junit.Test;

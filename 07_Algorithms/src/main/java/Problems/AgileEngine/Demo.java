@@ -17,8 +17,10 @@ import java.util.*;
 * */
 public class Demo {
     public static void main(String[] args) {
-        int[] input = {1, 3, 6, 4, 1, 2};
+        //int[] input = {1, 3, 6, 4, 1, 2};
+        int[] input = {6, 1, 5, 7, 8, 3};
         System.out.println(solution(input));
+        System.out.println(solution2(input));
     }
 
     public static int solution(int[] A) {
@@ -36,5 +38,15 @@ public class Demo {
             i++;
         }
         return i;
+    }
+
+    public static int solution2(int[] A) {
+        int minPositive = 1;
+        for(int a: A){
+            if (a == minPositive) {
+                minPositive++;
+            }
+        }
+        return minPositive;
     }
 }
